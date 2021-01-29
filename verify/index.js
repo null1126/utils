@@ -56,6 +56,46 @@ export const isFunctio = (fun) => {
 }
 
 /**
+ * @description 数值验证
+ * @param { number } num 
+ */
+export const isNumber = (num) => {
+    return Object.prototype.toString.call(num) === '[object Number]';
+}
+
+/**
+ * @description 字符串验证
+ * @param { string } str 
+ */
+export const isString = (str) => {
+    return Object.prototype.toString.call(str) === '[object String]';
+}
+
+/**
+ * @description 布尔验证
+ * @param { boolean } value 
+ */
+export const isBoolean = (value) => {
+    return Object.prototype.toString.call(value) === '[object Boolean]';
+}
+
+/**
+ * @description Undefined验证
+ * @param { undefined } value 
+ */
+export const isUndefined = (value) => {
+    return Object.prototype.toString.call(value) === '[object Undefined]';
+}
+
+/**
+ * @description Null验证
+ * @param { null } value 
+ */
+export const isNull = (value) => {
+    return Object.prototype.toString.call(value) === '[object Null]';
+}
+
+/**
  * @description 对象判空 判断是否是空对象
  * @param { object } obj 
  */
@@ -64,7 +104,7 @@ export const isObjectKey = (obj) => {
 }
 
 /**
- * @description 对象属性值判空 对象的属性值满足至少有一个不为空时返回true 否则返回false
+ * @description 对象属性值判空(支持深层嵌套) 对象的属性值满足至少有一个不为空时返回true 否则返回false
  * @param { object } obj 对象
  */
 export const isObjectValue = (obj = null) => {
@@ -80,4 +120,32 @@ export const isObjectValue = (obj = null) => {
         }
     })
     return meet
+}
+
+/**
+ * @description 对象属性值判空(支持深层嵌套) 对象的属性值全部不为空时返回true 否则返回false
+ * @param { object } obj 对象
+ */
+export const isObjectAllValue = (obj = null) => {
+    if(!isObject(obj) || !isObjectKey(obj)) return false
+    let objValues = Object.values(obj)
+    let meet = objValues.every(item => {
+        if (isObject(item)) {
+           return isObjectAllValue(item)
+        } else if (isArray(item)) {
+           return item.length > 0
+        } else {
+           return item !== '' && item !== null && item !== {}
+        }
+    })
+    return meet
+}
+
+/**
+ * @description 将下划线命名转化为驼峰命名
+ * @param { string } name 名称
+ */
+export const willLineToHump = (name = null) => {
+    if(!isString(name)) return console.error('Requires a string argument')
+    let names = name
 }
