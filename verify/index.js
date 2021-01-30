@@ -123,15 +123,20 @@ export const isObjectValue = (obj = null) => {
 }
 
 /**
- * @description 对象属性值判空(支持深层嵌套) 对象的属性值全部不为空时返回true 否则返回false
+ * @description 对象属性值判空(支持深层嵌套) 对象的属性值全部(除指定字段)不为空时返回true 否则返回false
  * @param { object } obj 对象
+ * @param { array } exclude 排除字段
  */
-export const isObjectAllValue = (obj = null) => {
-    if(!isObject(obj) || !isObjectKey(obj)) return false
-    let objValues = Object.values(obj)
+export const isObjectAllValue = (obj = null, exclude = []) => {
+    if (!isObject(obj) || !isObjectKey(obj)) return false
+    if (!isArray(exclude)) return console.error('method [ isObjectAllValue ] The second parameter type is array')
+    // 去掉不需要判断的字段后重新生成一个新对象
+    let objs = {}
+    for (const key in obj) if (Object.hasOwnProperty.call(obj, key) && exclude.indexOf(key) === -1) objs[key] = obj[key]
+    let objValues = Object.values(objs)
     let meet = objValues.every(item => {
         if (isObject(item)) {
-           return isObjectAllValue(item)
+           return isObjectAllValue(item, exclude)
         } else if (isArray(item)) {
            return item.length > 0
         } else {
@@ -139,13 +144,4 @@ export const isObjectAllValue = (obj = null) => {
         }
     })
     return meet
-}
-
-/**
- * @description 将下划线命名转化为驼峰命名
- * @param { string } name 名称
- */
-export const willLineToHump = (name = null) => {
-    if(!isString(name)) return console.error('Requires a string argument')
-    let names = name
 }
