@@ -1,5 +1,5 @@
 // 手机正则
-export const phoneReg = /^[1][3,4,5,7,8][0-9]{9}$/
+export const phoneReg = /^[1][3,4,5,7,8][0-9]{9}$/   
 // 邮箱正则
 export const emailReg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/
 
@@ -81,7 +81,7 @@ export const isBoolean = (value) => {
 
 /**
  * @description Undefined验证
- * @param { undefined } value 
+ * @param { undefined } value
  */
 export const isUndefined = (value) => {
     return Object.prototype.toString.call(value) === '[object Undefined]';
@@ -144,4 +144,25 @@ export const isObjectAllValue = (obj = null, exclude = []) => {
         }
     })
     return meet
+}
+
+
+export default {
+    phoneReg, 
+    emailReg,
+    isPhoneAvailable,
+    isOtherPhoneAvailable,
+    isEmailAvailable,
+    isNumber,
+    isObject,
+    isArray,
+    isFunctio,
+    isNumber,
+    isString,
+    isBoolean,
+    isUndefined,
+    isNull,
+    isObjectKey,
+    isObjectValue,
+    isObjectAllValue
 }

@@ -12,3 +12,7 @@ export const copyContent = (value) => {
     oInput.remove()
     return '复制成功~'
 }
+
+export default {
+    copyContent
+}
