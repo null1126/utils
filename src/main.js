@@ -1,3 +1,1 @@
-export {
-    isArray
-} from './verify/index.js'
+export * from './verify/index.js'
