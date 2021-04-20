@@ -1,6 +1,6 @@
 {
   "name": "tools-verify",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "集成常用工具类",
   "main": "src/verify/index.js",
   "scripts": {
