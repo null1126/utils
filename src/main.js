@@ -1,3 +1,3 @@
-import verify from './verify/index.js'
+import * as verify from './verify/index.js'
 
 export default verify 
