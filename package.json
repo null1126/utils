@@ -1,8 +1,8 @@
 {
   "name": "tools-verify",
-  "version": "1.0.6",
+  "version": "1.0.5",
   "description": "集成常用工具类",
-  "main": "dist/bundle.js",
+  "main": "src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
